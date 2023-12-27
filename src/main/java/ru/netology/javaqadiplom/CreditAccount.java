@@ -22,12 +22,10 @@ public class CreditAccount extends Account {
             throw new IllegalArgumentException(
                     "Накопительная ставка не может быть отрицательной, а у вас: " + rate
             );
-
-
         }
         if (initialBalance < 0) {
             throw new IllegalArgumentException(
-                    "Начальный баланс не мщжет быть отрицательным, а у вас:" + initialBalance
+                    "Начальный баланс не может быть отрицательным, а у вас:" + initialBalance
             );
         } else {
             this.balance = initialBalance;
@@ -104,7 +102,7 @@ public class CreditAccount extends Account {
         if (balance >= 0) {
             return 0;
         } else {
-            return balance* rate / 100;
+            return balance * rate / 100;
         }
 
     }
