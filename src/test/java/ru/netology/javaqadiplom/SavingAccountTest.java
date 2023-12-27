@@ -137,7 +137,7 @@ public class SavingAccountTest {
     @Test
     public void shouldReturnTrueForPositiveAmountPay() {
         SavingAccount account = new SavingAccount(
-                20_000,
+                3_000,
                 1_000,
                 10_000,
                 5);
@@ -278,6 +278,81 @@ public class SavingAccountTest {
         );
         int expected = 100;
         int actual = account.yearChange();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldYearChangeWithZeroMinBalance() {
+        SavingAccount account = new SavingAccount(
+                5,
+                0,
+                10_000,
+                5
+        );
+
+        int expected = 2;
+        int actual = account.yearChange();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldReturnTrueForPositiveAmountWhenNewEqualsMin() {
+        SavingAccount account = new SavingAccount(
+                5_000,
+                1_000,
+                10_000,
+                5);
+
+        boolean expected = true;
+        boolean actual = account.pay(4_000);
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldReturnNewBalanceForPositiveAmountWhenNewEqualsMin() {
+        SavingAccount account = new SavingAccount(
+                5_000,
+                1_000,
+                10_000,
+                5);
+
+        account.pay(4_000);
+
+        int expected = 1_000;
+        int actual = account.getBalance();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldReturnTrueForPositiveAmountWhenNewEqualsMax() {
+        SavingAccount account = new SavingAccount(
+                50_000,
+                10_000,
+                100_000,
+                5);
+
+        boolean expected = true;
+        boolean actual = account.add(50_000);
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldReturnNewBalanceForPositiveAmountWhenNewEqualsMax() {
+        SavingAccount account = new SavingAccount(
+                5_000,
+                1_000,
+                10_000,
+                5);
+
+        account.add(5_000);
+
+        int expected = 10_000;
+        int actual = account.getBalance();
 
         Assertions.assertEquals(expected, actual);
     }
