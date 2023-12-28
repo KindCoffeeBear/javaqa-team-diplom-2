@@ -283,7 +283,7 @@ public class SavingAccountTest {
     }
 
     @Test
-    public void shouldYearChangeWithZeroMinBalance() {
+    public void shouldYearChangeWithPositiveBalance() {
         SavingAccount account = new SavingAccount(
                 5,
                 0,
