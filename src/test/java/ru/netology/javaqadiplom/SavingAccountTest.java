@@ -285,7 +285,7 @@ public class SavingAccountTest {
     @Test
     public void shouldYearChangeWithPositiveBalance() {
         SavingAccount account = new SavingAccount(
-                5,
+                2,
                 0,
                 10_000,
                 5
@@ -356,6 +356,37 @@ public class SavingAccountTest {
 
         Assertions.assertEquals(expected, actual);
     }
+
+    @Test
+    public void shouldReturnNewBalanceForPositiveAmountWhenNewLessMin() {
+        SavingAccount account = new SavingAccount(
+                50_000,
+                10_000,
+                100_000,
+                5);
+
+        account.pay(45_000);
+
+        int expected = 5_000;
+        int actual = account.getBalance();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldReturnFalseForPositiveAmountWhenNewLessMin() {
+        SavingAccount account = new SavingAccount(
+                50_000,
+                10_000,
+                100_000,
+                5);
+
+        boolean expected = false;
+        boolean actual = account.pay(45_000);
+
+        Assertions.assertEquals(expected, actual);
+    }
+
 }
 
 
