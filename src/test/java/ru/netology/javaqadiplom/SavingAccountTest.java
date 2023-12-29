@@ -285,7 +285,7 @@ public class SavingAccountTest {
     @Test
     public void shouldYearChangeWithPositiveBalance() {
         SavingAccount account = new SavingAccount(
-                2,
+                50,
                 0,
                 10_000,
                 5
